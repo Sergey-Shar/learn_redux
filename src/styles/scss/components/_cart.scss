@@ -1,0 +1,10 @@
+.cart {
+ max-width: 1500px;
+ margin: 0 auto;
+ padding: 0 10px;
+
+ &__header{
+  padding: 30px;
+  border-bottom: 1px solid $border-color;
+ }
+}

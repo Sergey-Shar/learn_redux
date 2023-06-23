@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="page" lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./src/styles/css/main.min.css" />
+		<script type="module" src="./src/scripts/index.js"></script>
+		<title>Custom Redux</title>
+	</head>
+	<body class="page__body">
+		<section class="cart">
+			  <header class="cart__header">
+					<h2 class="cart__title">My Cart</h2>
+				</header>
+			<div class="product"></div>
+			<table class="bill">
+				<tbody>
+					<tr class="bill__subtotal">
+						<td class="bill__label">Subtotal:</td>
+						<td class="bill__value"></td>
+					</tr>
+					<tr class="bill__sales-tax">
+						<td class="bill__label">Sales tax:</td>
+						<td class="bill__value"></td>
+					</tr>
+					<tr class="bill__total">
+						<td class="bill__label">Total:</td>
+						<td class="bill__value"></td>
+					</tr>
+				</tbody>
+			</table>
+			<template class="product-template">
+				<div class="product__item">
+					<img src="" class="product__item-image" alt="" />
+					<h3 class="product__item-name"></h3>
+					<p class="product__item-description"></p>
+					<span class="product__item-price"></span>
+					<div class="product__quantity-selector">
+						<button class="product__item-button product__item-button--minus">
+							<svg
+							class="product__item-button-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 100 10"
+							>
+								<rect x="0" y="4.5" width="100" height="10" />
+							</svg>
+						</button>
+						<span class="product__quantity-value">0</span>
+						<button class="product__item-button product__item-button--plus">
+							<svg
+								class="product__item-button-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 100 100"
+							>
+								<rect x="0" y="45" width="100" height="10" />
+								<rect x="45" y="0" width="10" height="100" />
+							</svg>
+						</button>
+					</div>
+				</div>
+			</template>
+		</section>
+	</body>
+</html>
