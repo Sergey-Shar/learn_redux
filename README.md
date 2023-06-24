@@ -1,1 +1,1 @@
-This branch contains the native implementation of the functionality without the use of redux.
+This branch contains a custom Redux implementation
