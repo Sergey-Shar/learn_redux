@@ -1,4 +1,4 @@
-@import "../../variables.scss";
+@import "../../scss/variables.scss";
 
 .product {
  &__item {
@@ -39,9 +39,6 @@
  }
 
  &__itemButton {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
   padding: 0.45em 0.7em 0.5em;
   transition: background-color 1s;
 

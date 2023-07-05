@@ -1,8 +1,10 @@
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
+  //color-scheme: light dark;
+  scrollbar-gutter: stable;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -10,11 +12,22 @@
   -webkit-text-size-adjust: 100%;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
+ *,
+ *::before,
+ *::after {
+   box-sizing: border-box;
+ }
+
+button {
   padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 800;
 }
+
+
 
 
 

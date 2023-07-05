@@ -1,13 +1,6 @@
-export interface IProducts {
-	id: string;
-	image: string;
-	name: string;
-	description: string;
-	price: number;
-	quantity: number;
-}
+import { IProduct } from "../shared/types/product.types";
 
-export const PRODUCTS: IProducts[] = [
+export const PRODUCTS: IProduct[] = [
 	{
 		id: self.crypto.randomUUID(),
 		image:

@@ -1,24 +1,15 @@
 import { ProductItem } from '../product-item'
-import { IProducts  } from '../../__data__/products'
 import styles from './styles.module.scss'
-import { memo } from 'react'
+import { useAppSelector } from '../../shared/hooks'
+import { productsSelector } from '../../redux'
 
-interface ProductProps {
-	products: IProducts[]
-	decreaseQuantity: (id: string) => void
-	increaseQuantity: (id: string) => void
-}
-export const Product = ({products, decreaseQuantity, increaseQuantity}: ProductProps) => {
+export const Product = () => {
+const products = useAppSelector(productsSelector)
 	return (
 		<div className={styles.product}>
-			{products.map((product) => (
-				<ProductItem
-				decreaseQuantity={decreaseQuantity}
-				increaseQuantity={increaseQuantity}
-				product={product}
-     key={product.id}
-				/>
-			))}
+			{products.map((product) => 
+			<ProductItem product={product} key={product.id} />
+			)}
 		</div>
 	)
 }

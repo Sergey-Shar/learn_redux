@@ -1,11 +1,8 @@
-import { Total } from '../../types/total.types'
 import styles from './styles.module.scss'
-
-interface CartTotalProps {
-	total: Total
-}
-
-export const CartTotal = ({ total }: CartTotalProps) => {
+import { useAppSelector } from '../../shared/hooks'
+import { totalsSelector } from '../../redux'
+export const CartTotal = () => {
+const total = useAppSelector(totalsSelector)
 	return (
 		<table className={styles.bill}>
 			<tbody>

@@ -1,6 +1,10 @@
- @import '../../variables.scss';
- 
+@import "../../scss/variables.scss";
  .cart__header {
   padding: 30px;
   border-bottom: 1px solid $border-color;
  }
+ .cart__title {
+  color: $text-color;
+  font-size: 34px;
+ }
+

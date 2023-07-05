@@ -1,0 +1,16 @@
+ @import "../../../scss/variables.scss";
+
+.button {
+ padding: 15px 30px;
+ border: 1px solid $border-color;
+ border-radius: $border-radius;
+ transition: background-color 1s;
+ color: $text-color;
+  &:hover {
+    background-color: rgb(220, 220, 221);
+   }
+  
+   &:active {
+    background-color: rgb(173, 173, 175);
+   }
+}

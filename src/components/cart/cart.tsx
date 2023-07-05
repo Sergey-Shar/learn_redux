@@ -2,65 +2,57 @@ import { CartTotal } from '../cart-total'
 import { CartHeader } from '../cart-header'
 import { Product } from '../product'
 import styles from './styles.module.scss'
-import { IProducts, PRODUCTS } from '../../__data__/products'
-import { useCallback, useMemo, useState } from 'react'
-import { round } from '../../shared/utils/round'
-import { Total } from '../../types/total.types'
+import {
+	BaseButton,
+	BaseModal,
+	useAppDispatch,
+	useAppSelector
+} from '../../shared'
+import {
+	confirmedSelector,
+	createOrderAction,
+	isErrorSelector,
+	errorMessageSelector
+} from '../../redux'
+import { useModal } from '../../shared/hooks/modal'
 
 export const Cart = () => {
-	const [products, setProducts] = useState<IProducts[]>(PRODUCTS)
+	const showModalSuccess = useAppSelector(confirmedSelector)
+	const showModalError = useAppSelector(isErrorSelector)
+	const errorMessage = useAppSelector(errorMessageSelector)
+	const dispatch = useAppDispatch()
+ const { ref, handleCloseModal } = useModal(showModalSuccess, showModalError)
 
-	const increaseQuantity = useCallback((id: string) => {
-		setProducts((products) =>
-			products.map((product) => {
-				if (product.id === id) {
-					return {
-						...product,
-						quantity: product.quantity + 1
-					}
-				}
-
-				return product
-			})
-		)
-	}, [])
-
-	const decreaseQuantity = useCallback((id: string) => {
-		setProducts((products) =>
-			products.map((product) => {
-				if (product.id === id && product.quantity > 1) {
-					return {
-						...product,
-						quantity: product.quantity - 1
-					}
-				}
-
-				return product
-			})
-		)
-	}, [])
-
-		const total: Total = useMemo(() => {
-			const subtotal = products.reduce(
-				(acc, product) => acc + product.price * product.quantity,
-				0
-			)
-			const taxRate = 0.13
-			const tax = subtotal * taxRate
-			const total = subtotal + tax
-
-			return { subtotal: round(subtotal), tax: round(tax), total: round(total) }
-		}, [products])
+	const handleBuyClick = ():void => {
+		dispatch(createOrderAction())
+	}
 
 	return (
 		<section className={styles.cart}>
+			{showModalSuccess && (
+				<BaseModal
+					ref={ref}
+					title="Success!"
+					titleModification="modal__titleSuccess"
+					onCloseModal={handleCloseModal}
+				>
+					Order confirmed!
+				</BaseModal>
+			)}
+			{showModalError && (
+				<BaseModal
+					ref={ref}
+					title="Error!"
+					titleModification="modal__titleError"
+					onCloseModal={handleCloseModal}
+				>
+					{errorMessage}
+				</BaseModal>
+			)}
 			<CartHeader />
-			<Product
-				increaseQuantity={increaseQuantity}
-				decreaseQuantity={decreaseQuantity}
-				products={products}
-			/>
-			<CartTotal total={total} />
+			<Product />
+			<CartTotal />
+			<BaseButton onClickBtn={handleBuyClick}>Buy</BaseButton>
 		</section>
 	)
 }

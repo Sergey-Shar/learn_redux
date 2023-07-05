@@ -1,14 +1,14 @@
 import { memo } from 'react'
-import { IProducts } from '../../__data__/products'
 import styles from './styles.module.scss'
+import { decreaseQuantityActionCreator, increaseQuantityActionCreator } from '../../redux/actions/productActions'
+import { IProduct } from '../../shared/types/product.types'
+import { useAppDispatch } from '../../shared/hooks'
 
 interface ProductItemProps {
- product: IProducts
-	decreaseQuantity: (id: string) => void
-	increaseQuantity: (id: string) => void
+ product: IProduct
 }
-export const ProductItem = memo(({ product, decreaseQuantity, increaseQuantity}: ProductItemProps) => {
-
+export const ProductItem = memo(({ product }: ProductItemProps) => {
+ const dispatch = useAppDispatch()
 	return (
 		<div className={styles.product__item}>
 			<img
@@ -21,7 +21,7 @@ export const ProductItem = memo(({ product, decreaseQuantity, increaseQuantity}:
 			<span className={styles.product__itemPrice}>{product.price}</span>
 			<div className={styles.product__quantitySelector}>
 				<button
-					onClick={decreaseQuantity.bind(null, product.id)}
+					onClick={() => dispatch(decreaseQuantityActionCreator(product.id))}
 					className={`${styles.product__itemButton} ${styles.product__itemButtonMinus}`}
 				>
 					<svg
@@ -35,7 +35,7 @@ export const ProductItem = memo(({ product, decreaseQuantity, increaseQuantity}:
 				</button>
 				<span className={styles.product__quantityValue}>{product.quantity}</span>
 				<button
-					onClick={increaseQuantity.bind(null, product.id)}
+					onClick={() => dispatch(increaseQuantityActionCreator(product.id))}
 					className={`${styles.product__itemButton} ${styles.product__itemButtonPlus}`}
 				>
 					<svg
